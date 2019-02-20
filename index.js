@@ -1,27 +1,4 @@
 
-// function ajaxCall(){
-// 	$.ajax({url: "https://raw.githubusercontent.com/OggiDanailov/gdp-data/master/data.json",
-// 		type: "GET",
-// 	    dataType: 'json',
-// 		success: function(res){
-// 			ajaxCall2("Bulgaria")
-// 		}
-// 	})
-// }
-
-
-// function createDropDown(res){
-// 	let select = document.createElement("select")
-// 	document.body.appendChild(select)
-// 	for(let i = 0;i<res.length;i++){
-// 		let option = document.createElement("option")
-// 		option.value = res[i]["Country Name"]
-// 		option.innerHTML = res[i]["Country Name"]
-// 		select.appendChild(option)
-// 		ajaxCall2(option.value)
-// 	}
-
-// }
 
 const countryList = document.getElementById("country-list")
 var currentOption = "";
@@ -56,6 +33,7 @@ function createFields(country){
 		container.style.border = '2px solid orange'
 		container.style.display = "grid"
 		container.style.gridTemplateColumns = '1fr 1fr'
+		container.setAttribute("id", "container")
 		document.body.appendChild(container)
 		let boxLeft = document.createElement("div")
 		boxLeft.setAttribute("id", "boxLeft")
@@ -68,10 +46,10 @@ function createFields(country){
 		countryName.innerHTML = "Name: " +  country.name
 		boxLeft.appendChild(countryName)
 		let countryArea = document.createElement("div")
-		countryArea.innerHTML ="Area: " + country.area + "km2"
+		countryArea.innerHTML ="Area: " + numberWithCommas(country.area) + "km2"
 		boxLeft.appendChild(countryArea)
 		let countryPopulation = document.createElement("div")
-		countryPopulation.innerHTML = "Population: " +  country.population
+		countryPopulation.innerHTML = "Population: " +  numberWithCommas(country.population)
 		boxLeft.appendChild(countryPopulation)
 		let countryCapital = document.createElement("div")
 		countryCapital.innerHTML = "Capital: " +  country.capital

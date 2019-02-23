@@ -1,7 +1,27 @@
 
+
+#main-container {
+	border: 3px solid orange;
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+#compare {
+	margin: 100px auto;
+	width: 150px;
+	height: 40px;
+	border: 2px solid;
+	background-color: blue;
+	color: white;
+	padding: 5px;
+	line-height: 35px;
+}
+
+
 @media screen and (max-width: 767px){
-	#container {
-	grid-template-columns: auto;
+	#main-container {
+	grid-template-columns: 1fr;
 	background-color: red;
 }	
 }

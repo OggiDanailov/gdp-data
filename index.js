@@ -211,11 +211,18 @@ function numberWithCommas(x) {
 compare.addEventListener("click", doComparison)
 
 function doComparison(){
-	console.log("The gdp per person in " +  dataArrayLeft[0] + " is " + dataArrayLeft[2]/dataArrayLeft[1] +"$ per year")
-
-	
+	const gdp1 = dataArrayLeft[2]/dataArrayLeft[1]; 
+	const gdp2 = dataArrayRight[2]/dataArrayRight[1]; 
+	console.log("The gdp per person in " +  dataArrayLeft[0] + " is " + gdp1 +"$ per year")
+	console.log("The gdp per person in " +  dataArrayRight[0] + " is " + gdp2 +"$ per year")
+	if(gdp1 > gdp2){
+		console.log("if " + dataArrayRight[0] + " has to catch up with " + dataArrayLeft[0] + ", " + "the total gdp of " + dataArrayRight[0] + " should be lifted to " + numberWithCommas((gdp1/gdp2)*dataArrayRight[2])   )
+	}else {
+		console.log("if " + dataArrayLeft[0] + " has to catch up with " + dataArrayRight[0] + ", " + "the total gdp of " + dataArrayLeft[0] + " should be lifted to " + numberWithCommas((gdp2/gdp1)*dataArrayLeft[2])   )
+	}
 	
 }
+
 
 
 

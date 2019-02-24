@@ -189,7 +189,7 @@ function getGDPRight(data){
 	countryGDP.style.gridRowEnd = "4"
 	for(let i = 0;i<data.length;i++){
 		if(currentOption == data[i]["Country Name"]){
-			console.log(data[i]["2018"])
+			// console.log(data[i]["2018"])
 			if(data[i]["2018"] == ""){
 				countryGDP.innerHTML = "GDP for 2017: " +  numberWithCommas(data[i]["2017"])
 				dataArrayRight.push(data[i]["2017"])
@@ -211,19 +211,34 @@ function numberWithCommas(x) {
 compare.addEventListener("click", doComparison)
 
 function doComparison(){
-	const gdp1 = dataArrayLeft[2]/dataArrayLeft[1]; 
-	const gdp2 = dataArrayRight[2]/dataArrayRight[1]; 
+	const gdp1 = fixNumbers(dataArrayLeft[2]/dataArrayLeft[1]); 
+	const gdp2 = fixNumbers(dataArrayRight[2]/dataArrayRight[1]); 
 	console.log("The gdp per person in " +  dataArrayLeft[0] + " is " + gdp1 +"$ per year")
 	console.log("The gdp per person in " +  dataArrayRight[0] + " is " + gdp2 +"$ per year")
 	if(gdp1 > gdp2){
-		console.log("if " + dataArrayRight[0] + " has to catch up with " + dataArrayLeft[0] + ", " + "the total gdp of " + dataArrayRight[0] + " should be lifted to " + numberWithCommas((gdp1/gdp2)*dataArrayRight[2])   )
-	}else {
-		console.log("if " + dataArrayLeft[0] + " has to catch up with " + dataArrayRight[0] + ", " + "the total gdp of " + dataArrayLeft[0] + " should be lifted to " + numberWithCommas((gdp2/gdp1)*dataArrayLeft[2])   )
+		console.log("if " + dataArrayRight[0] + " has to catch up with " + dataArrayLeft[0] + ", " + "the total gdp of " + dataArrayRight[0] + " should be lifted to " + compareGDP(gdp1,gdp2,dataArrayRight[2]) + " "  )
+	}else {		
+		console.log("if " + dataArrayLeft[0] + " has to catch up with " + dataArrayRight[0] + ", " + "the total gdp of " + dataArrayLeft[0] + " should be lifted to " + compareGDP(gdp2,gdp1,dataArrayLeft[2]) + " ;" + " this is " + fixNumbers(comparePercentage(compareGDP(gdp2,gdp1,dataArrayLeft[2]),dataArrayLeft[2])) + "%" + " of the gdp"  )
 	}
 	
 }
 
+function fixNumbers(x){
+	return parseFloat(x.toFixed(2))
+}
 
+function compareGDP(x, y, z){
+	return numberWithCommas(fixNumbers((x/y) * z))
+}
+
+function comparePercentage(x, y){
+	var a = x.toString().replace(/\,/g, " ")
+	var b = a.replace(/\s/g, "")
+	console.log(b)
+	console.log(y)
+	return (y/parseFloat(b))*100
+
+}
 
 
 

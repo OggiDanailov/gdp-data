@@ -23,6 +23,7 @@ countryListRight.addEventListener('change', function(){
 // ajax call that gets the info about the selected country
 function ajaxCallCountries(){
 		currentOption = countryList.options[countryList.selectedIndex].innerHTML
+		console.log(currentOption)
 	return new Promise((resolve, reject) => {
 		$.ajax({url: "https://restcountries.eu/rest/v2/name/" + currentOption + "?fullText=true",
 		type: "GET",
@@ -50,7 +51,7 @@ function ajaxCallCountriesRight(){
 
 // function that creates and populates the fields of name, area, population capital and flag
 function createFieldsLeft(country){
-	console.log(country)
+	
 	let container = document.createElement('div')
 		container.style.width = '100%'
 		container.style.margin = "20px auto";
@@ -171,7 +172,13 @@ function getGDP(data){
 				countryGDP.innerHTML = "GDP for 2017: " +  numberWithCommas(data[i]["2017"])
 				dataArrayLeft.push(data[i]["2017"])
 				boxLeft.appendChild(countryGDP)	
-			}else {
+			}else if(data[i]["2018"] == "" && data[i]["2017"] == ""){
+				countryGDP.innerHTML = "GDP for 2016: " +  numberWithCommas(data[i]["2016"])
+				dataArrayLeft.push(data[i]["2016"])
+				boxLeft.appendChild(countryGDP)
+			}
+
+			else {
 				countryGDP.innerHTML = "GDP for 2018: " +  numberWithCommas(data[i]["2018"])
 				dataArrayLeft.push(data[i]["2018"])
 				boxLeft.appendChild(countryGDP)	
@@ -218,7 +225,7 @@ function doComparison(){
 	if(gdp1 > gdp2){
 		console.log("if " + dataArrayRight[0] + " has to catch up with " + dataArrayLeft[0] + ", " + "the total gdp of " + dataArrayRight[0] + " should be lifted to " + compareGDP(gdp1,gdp2,dataArrayRight[2]) + " "  )
 	}else {		
-		console.log("if " + dataArrayLeft[0] + " has to catch up with " + dataArrayRight[0] + ", " + "the total gdp of " + dataArrayLeft[0] + " should be lifted to " + compareGDP(gdp2,gdp1,dataArrayLeft[2]) + " ;" + " this is " + fixNumbers(comparePercentage(compareGDP(gdp2,gdp1,dataArrayLeft[2]),dataArrayLeft[2])) + "%" + " of the gdp"  )
+		console.log("if " + dataArrayLeft[0] + " has to catch up with " + dataArrayRight[0] + ", " + "the total gdp of " + dataArrayLeft[0] + " should be lifted to " + compareGDP(gdp2,gdp1,dataArrayLeft[2]) + " ;" + " this is " + fixNumbers(comparePercentage(compareGDP(gdp2,gdp1,dataArrayLeft[2]),dataArrayLeft[2])) + "%" + " increase of the gdp"  )
 	}
 	
 }

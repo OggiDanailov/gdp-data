@@ -167,17 +167,11 @@ function getGDP(data){
 	countryGDP.style.gridRowEnd = "4"
 	for(let i = 0;i<data.length;i++){
 		if(currentOption == data[i]["Country Name"]){
-			console.log(data[i]["2018"])
 			if(data[i]["2018"] == ""){
 				countryGDP.innerHTML = "GDP for 2017: " +  numberWithCommas(data[i]["2017"])
 				dataArrayLeft.push(data[i]["2017"])
 				boxLeft.appendChild(countryGDP)	
-			}else if(data[i]["2018"] == "" && data[i]["2017"] == ""){
-				countryGDP.innerHTML = "GDP for 2016: " +  numberWithCommas(data[i]["2016"])
-				dataArrayLeft.push(data[i]["2016"])
-				boxLeft.appendChild(countryGDP)
 			}
-
 			else {
 				countryGDP.innerHTML = "GDP for 2018: " +  numberWithCommas(data[i]["2018"])
 				dataArrayLeft.push(data[i]["2018"])

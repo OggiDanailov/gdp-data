@@ -34,7 +34,7 @@ function ajaxCallCountries(){
 		})
 	})
 }
-
+// ajax call that gets the info about the selected country - right field
 function ajaxCallCountriesRight(){
 		currentOption = countryListRight.options[countryListRight.selectedIndex].innerHTML
 	return new Promise((resolve, reject) => {
@@ -219,7 +219,8 @@ function doComparison(){
 	if(gdp1 > gdp2){
 		console.log("if " + dataArrayRight[0] + " has to catch up with " + dataArrayLeft[0] + ", " + "the total gdp of " + dataArrayRight[0] + " should be lifted to " + compareGDP(gdp1,gdp2,dataArrayRight[2]) + " "  )
 	}else {		
-		console.log("if " + dataArrayLeft[0] + " has to catch up with " + dataArrayRight[0] + ", " + "the total gdp of " + dataArrayLeft[0] + " should be lifted to " + compareGDP(gdp2,gdp1,dataArrayLeft[2]) + " ;" + " this is " + fixNumbers(comparePercentage(compareGDP(gdp2,gdp1,dataArrayLeft[2]),dataArrayLeft[2])) + "%" + " increase of the gdp"  )
+		console.log("if " + dataArrayLeft[0] + " has to catch up with " + dataArrayRight[0] + ", " + "the total gdp of " + dataArrayLeft[0] + " should be lifted to " + compareGDP(gdp2,gdp1,dataArrayLeft[2]) + " ;"  )
+		 // + " this is " + fixNumbers(comparePercentage(compareGDP(gdp2,gdp1,dataArrayLeft[2]),dataArrayLeft[2])) + "%" + " increase of the gdp"
 	}
 	
 }
@@ -237,7 +238,9 @@ function comparePercentage(x, y){
 	var b = a.replace(/\s/g, "")
 	console.log(b)
 	console.log(y)
-	return (y/parseFloat(b))*100
+	
+		return (y/parseFloat(b))*100
+	
 
 }
 
